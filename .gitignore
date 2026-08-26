@@ -3,4 +3,4 @@ Desktop.ini
 *.tmp
 *.bak
 ~$*
-
+.artifacts/

@@ -1,31 +1,62 @@
 # MicroAmplifierModule
 
-Archivio tecnico e produttivo di un modulo micro-amplificatore basato sul circuito integrato
-TDA2822. Il repository conserva i file consegnabili alla produzione e il materiale grafico
-storico, senza ricostruire o modificare gli artefatti originali.
+Archivio hardware open source di un piccolo modulo amplificatore audio basato su `TDA2822G-S08-R`,
+pubblicato da **Fabio De Deo / DDF.Technology** con licenza MIT.
 
-## Contenuto
+![Render del lato componenti](Top.png)
 
-- `BOM_PCB_MicroAmplifier_2022-04-06.csv`: distinta base;
-- `PickAndPlace_PCB_MicroAmplifier_2022-04-06.csv`: coordinate di assemblaggio;
-- `Gerber_PCB_MicroAmplifier_2022-04-06.zip`: strati Gerber e forature del PCB;
-- `Piedinatura.png` e `MonoliticoBridge.png`: riferimenti tecnici;
-- immagini e file PSD: materiali promozionali e di presentazione.
+![Render del lato posteriore](Back.png)
 
-## Uso per la produzione
+## Stato del progetto
 
-Prima di ordinare PCB o assemblaggio, estrarre il pacchetto Gerber in un visualizzatore dedicato
-e verificare almeno outline, rame, solder mask, serigrafia, forature, stack-up e unità di misura.
-Confrontare quindi distinta base e pick-and-place con disponibilità, package e orientamento dei
-componenti. I file sono datati 6 aprile 2022 e potrebbero richiedere una revisione produttiva.
+> **Archivio tecnico non collaudato e non pronto alla produzione.** I file produttivi risalgono al
+> 6 aprile 2022. Il repository non contiene misure prestazionali, risultati di collaudo, sorgenti
+> PCB editabili o una revisione hardware formalmente approvata.
 
-## Limiti e sicurezza
+I materiali sono pubblicati liberamente per studio, prototipazione e sviluppo derivato. Prima di
+alimentare, assemblare o ordinare la scheda occorre effettuare una revisione indipendente di schema,
+layout, polarità, package, alimentazione, dissipazione e disponibilità dei componenti.
 
-Il repository non documenta collaudo, alimentazione, prestazioni audio, dissipazione o conformità
-del prodotto finito. La realizzazione hardware deve essere validata da personale competente prima
-dell'impiego in apparecchiature reali.
+## Contenuto produttivo
 
-## Proprietà e licenza
+- `Gerber_PCB_MicroAmplifier_2022-04-06.zip`: rame, solder mask, serigrafia, paste mask, outline e
+  file di foratura in unità metriche;
+- `BOM_PCB_MicroAmplifier_2022-04-06.csv`: distinta base, 7 righe e 9 componenti totali;
+- `PickAndPlace_PCB_MicroAmplifier_2022-04-06.csv`: 9 posizioni sul lato superiore;
+- `Top.png` e `Back.png`: render di presentazione del PCB;
+- `tools/Test-ManufacturingPackage.ps1`: controllo strutturale ripetibile di Gerber, BOM e
+  Pick-and-Place.
 
-Copyright © 2026 Fabio De Deo — [www.ddf.technology](https://www.ddf.technology/). Tutti i
-diritti riservati. Consultare [LICENSE](LICENSE).
+Il repository conserva inoltre alcuni riferimenti grafici storici che non sostituiscono i sorgenti
+EDA o i datasheet ufficiali.
+
+## Verifica rapida
+
+Da PowerShell:
+
+```powershell
+.\tools\Test-ManufacturingPackage.ps1
+```
+
+Lo script verifica presenza e leggibilità degli strati attesi, unità metriche e corrispondenza fra
+i designatori della BOM e quelli del Pick-and-Place. Il superamento del controllo conferma soltanto
+la coerenza strutturale dei file, non la correttezza elettrica del circuito.
+
+## Produzione responsabile
+
+1. aprire il pacchetto Gerber in un visualizzatore indipendente;
+2. controllare outline, rame, solder mask, serigrafia, forature e stack-up;
+3. confrontare package, polarità e orientamento con i datasheet correnti;
+4. verificare le sostituzioni proposte dal produttore del PCB;
+5. assemblare un prototipo protetto e collaudarlo con alimentatore limitato in corrente;
+6. misurare assorbimento, offset, temperatura, stabilità e comportamento sul carico previsto.
+
+Consultare [HARDWARE_NOTICE.md](HARDWARE_NOTICE.md) prima dell'uso e
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) per componenti e riferimenti esterni.
+
+## Licenza
+
+Copyright © 2026 Fabio De Deo — [www.ddf.technology](https://www.ddf.technology/).
+
+I materiali originali sono distribuiti con licenza [MIT](LICENSE), senza garanzie. Nomi commerciali,
+datasheet e materiali di terze parti restano dei rispettivi titolari.
